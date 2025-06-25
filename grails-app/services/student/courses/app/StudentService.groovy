@@ -1,10 +1,10 @@
 package student.courses.app
 
-import request.CreateStudentRequest
-import request.UpdateStudentRequest
+import models.request.CreateStudentRequest
+import models.request.UpdateStudentRequest
 import grails.gorm.transactions.Transactional
 
-@Transactional
+@Transactional(readOnly = true)
 class StudentService {
 
     List<Student> getAllStudents() {
@@ -15,6 +15,7 @@ class StudentService {
         return Student.get(id)
     }
 
+    @Transactional
     Student createStudent(CreateStudentRequest request) {
         Student student = new Student()
         student.firstName = request.firstName
@@ -29,6 +30,7 @@ class StudentService {
         return student
     }
 
+    @Transactional
     Student updateStudent(UpdateStudentRequest request) {
         Student student = Student.get(request.id)
         if (!student) {
@@ -47,6 +49,7 @@ class StudentService {
         return student
     }
 
+    @Transactional
     void deleteStudent(Long id) {
         Student student = Student.get(id)
         if (!student) {

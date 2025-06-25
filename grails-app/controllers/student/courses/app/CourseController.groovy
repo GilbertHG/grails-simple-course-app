@@ -1,7 +1,7 @@
 package student.courses.app
 
-import request.CreateCourseRequest
-import request.UpdateCourseRequest
+import models.request.CreateCourseRequest
+import models.request.UpdateCourseRequest
 
 class CourseController {
 

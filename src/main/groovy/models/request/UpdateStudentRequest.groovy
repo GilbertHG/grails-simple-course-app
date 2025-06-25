@@ -1,4 +1,4 @@
-package request
+package models.request
 
 import grails.validation.Validateable
 import org.springframework.format.annotation.DateTimeFormat

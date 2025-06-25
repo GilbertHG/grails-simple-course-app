@@ -60,10 +60,13 @@ dataSource:
 environments:
   development:
     dataSource:
+      pooled: true
       dbCreate: update
       url: jdbc:mysql://localhost:3308/student_courses?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
       username: root
       password: 'root'
+      logSql: true
+      formatSql: true
       properties:
         jmxEnabled: true
         initialSize: 5

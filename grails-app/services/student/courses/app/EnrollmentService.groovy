@@ -1,9 +1,9 @@
 package student.courses.app
 
-import request.CreateEnrollmentRequest
+import models.request.CreateEnrollmentRequest
 import grails.gorm.transactions.Transactional
 
-@Transactional
+@Transactional(readOnly = true)
 class EnrollmentService {
 
     List<Enrollment> getAllEnrollments() {
@@ -14,6 +14,7 @@ class EnrollmentService {
         return Enrollment.get(id)
     }
 
+    @Transactional
     Enrollment createEnrollment(CreateEnrollmentRequest request) {
         Student student = Student.get(request.studentId)
         if (!student) {
@@ -44,6 +45,7 @@ class EnrollmentService {
         return enrollment
     }
 
+    @Transactional
     Enrollment enrollStudentInCourse(Long studentId, Long courseId, Date enrollmentDate) {
         CreateEnrollmentRequest request = new CreateEnrollmentRequest()
         request.studentId = studentId
@@ -53,6 +55,7 @@ class EnrollmentService {
         return createEnrollment(request)
     }
 
+    @Transactional
     void updateGrade(Long enrollmentId, BigDecimal grade) {
         Enrollment enrollment = Enrollment.get(enrollmentId)
         if (!enrollment) {
@@ -66,6 +69,7 @@ class EnrollmentService {
         }
     }
 
+    @Transactional
     void deleteEnrollment(Long id) {
         Enrollment enrollment = Enrollment.get(id)
         if (!enrollment) {

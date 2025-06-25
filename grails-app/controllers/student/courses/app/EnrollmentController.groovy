@@ -1,6 +1,6 @@
 package student.courses.app
 
-import request.CreateEnrollmentRequest
+import models.request.CreateEnrollmentRequest
 
 class EnrollmentController {
 

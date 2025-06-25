@@ -1,10 +1,10 @@
 package student.courses.app
 
-import request.CreateCourseRequest
-import request.UpdateCourseRequest
+import models.request.CreateCourseRequest
+import models.request.UpdateCourseRequest
 import grails.gorm.transactions.Transactional
 
-@Transactional
+@Transactional(readOnly = true)
 class CourseService {
 
     List<Course> getAllCourses() {
@@ -15,6 +15,7 @@ class CourseService {
         return Course.get(id)
     }
 
+    @Transactional
     Course createCourse(CreateCourseRequest request) {
         Course course = new Course()
         course.courseName = request.courseName
@@ -28,6 +29,7 @@ class CourseService {
         return course
     }
 
+    @Transactional
     Course updateCourse(UpdateCourseRequest request) {
         Course course = Course.get(request.id)
         if (!course) {
@@ -45,6 +47,7 @@ class CourseService {
         return course
     }
 
+    @Transactional
     void deleteCourse(Long id) {
         Course course = Course.get(id)
         if (!course) {
